@@ -32,5 +32,5 @@ jobs:
         application_name: authentication
         environment_name: production
         region: ap-south-1
-        version_label: ${{ github.sha }}
+        version_label: ${{ github.sha }}-${{ github.run_number }}
         deployment_package: application.zip
