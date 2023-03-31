@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Authentication</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="buttonContainer">
+      <button id="basicButton" class="indigo">Basic Authentication</button>
+    </div>
+    <div class="activityContainer">
+      <button id="loginButton" class="violet">Login</button>
+      <button id="registrationButton" class="violet">Registration</button>
+    </div>
+
+    <div id="loginFormContainer" class="formContainer">
+      <label>
+        Email: <input value="Gaurav@123" type="email" name="" id="emailLogin" />
+      </label>
+      <label>
+        Password:
+        <input value="12345" type="password" name="" id="passwordLogin" />
+      </label>
+      <button class="formBtn" id="loginSubmitButton">Login</button>
+    </div>
+
+    <div id="registrationFormContainer" class="formContainer">
+      <label>
+        Name: <input value="Gaurav" type="text" name="" id="nameRegistration" />
+      </label>
+      <label>
+        Email:
+        <input value="Gaurav@123" type="email" name="" id="emailRegistration" />
+      </label>
+      <label>
+        Password:
+        <input
+          value="12345"
+          type="password"
+          name=""
+          id="passwordRegistration"
+        />
+      </label>
+      <button class="formBtn" id="registrationSubmitButton">Register</button>
+    </div>
+
+    <div id="textAreaContainer" class="formContainer">
+      <label>
+        My Notes
+        <textarea id="myNotes" name="w3review" rows="4" cols="50"> </textarea>
+      </label>
+
+      <button class="formBtn" id="saveNotesButton">Save</button>
+    </div>
+  </body>
+  <script type="module" defer src="main.js"></script>
+</html>

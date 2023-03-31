@@ -1,0 +1,71 @@
+.buttonContainer{
+  background-color: grey;
+  padding: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+button{
+    min-width: 200px;
+    height: 60px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    cursor: pointer;
+    border: none;
+}
+button:hover{
+    opacity: 0.8;
+}
+
+button.indigo{
+    background-color: indigo;
+    color: wheat;
+}
+
+.activityContainer{
+    background-color: grey;
+    padding: 10px;
+    display: none;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+button.violet{
+    background-color: violet;
+    color: wheat;
+}
+
+.formContainer{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: grey;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+   
+
+}
+
+.formContainer>label{
+    margin: 8px;
+}
+button.formBtn{
+    width: fit-content;
+    padding: 5px;
+    background-color: black;
+    color: wheat;
+    height: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 10px;
+}
