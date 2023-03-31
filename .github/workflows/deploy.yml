@@ -10,27 +10,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: 14 # Set the desired Node.js version
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14 # Set the desired Node.js version
 
-    - name: Install dependencies
-      run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Zip the application
-      run: zip -r application.zip .
+      - name: Zip the application
+        run: zip -r application.zip .
 
-    - name: Deploy to AWS Elastic Beanstalk
-      uses: einaregilsson/beanstalk-deploy@v19
-      with:
-        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        application_name: authentication
-        environment_name: Authentication-env
-        region: ap-south-1
-        version_label: ${{ github.sha }}-${{ github.run_number }}
-        deployment_package: application.zip
+      - name: Deploy to AWS Elastic Beanstalk
+        uses: einaregilsson/beanstalk-deploy@v19
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: authentication
+          environment_name: Authentication-env
+          region: ap-south-1
+          version_label: ${{ github.sha }}-${{ github.run_number }}
+          deployment_package: application.zip
+          use_existing_version_if_available: true
