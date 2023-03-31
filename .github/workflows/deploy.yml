@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 14 # Set the desired Node.js version
+          node-version: 16 # Set the desired Node.js version
 
       - name: Install dependencies
         run: npm ci
@@ -30,7 +30,7 @@ jobs:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: authentication
-          environment_name: Authentication-env-1
+          environment_name: Test-env
           region: ap-south-1
           version_label: ${{ github.sha }}-${{ github.run_number }}
           deployment_package: application.zip
