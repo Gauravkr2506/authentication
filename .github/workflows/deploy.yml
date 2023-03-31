@@ -30,7 +30,7 @@ jobs:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: authentication
-          environment_name: Authentication-env
+          environment_name: Authentication-env-1
           region: ap-south-1
           version_label: ${{ github.sha }}-${{ github.run_number }}
           deployment_package: application.zip
