@@ -14,6 +14,7 @@ const isAuthenticatedBasicAuth = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
     req.user = decoded;
+    console.log("decoded", decoded);
     next();
   } catch (error) {
     res.status(401).send({ message: "Invalid token" });
@@ -65,7 +66,7 @@ const loginBasicAuth = (req, res) => {
       if (!isPasswordValid) {
         return res.status(401).send({ message: "Invalid password" });
       }
-      const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "1h" });
+      const token = jwt.sign({ email: email }, JWT_SECRET, { expiresIn: "1h" });
       console.log("loginBasicAuth => user", user);
       res
         .status(200)
@@ -94,7 +95,7 @@ const setDataBasicAuth = (req, res) => {
   const { email } = req.user;
   const { data } = req.body;
   const user = userData[email];
-  console.log("setDataBasicAuth => user", user);
+  console.log("setDataBasicAuth => user", user, "r");
   if (!user) {
     return res.status(404).send("Oops! invalid email, user not found");
   }

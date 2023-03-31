@@ -28,5 +28,5 @@ export function getUserDetail() {
 
 export function setUserDetail(data) {
   userDetails = data;
-  localStorage.setItem("authString", JSON.stringify(userDetails));
+  localStorage.setItem("userDetails", JSON.stringify(userDetails));
 }

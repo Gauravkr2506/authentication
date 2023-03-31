@@ -9,3 +9,9 @@ export function showFlexElement(element) {
     element.style.display = "flex";
   }
 }
+
+export function showBlockElement(element) {
+  if (element) {
+    element.style.display = "block";
+  }
+}

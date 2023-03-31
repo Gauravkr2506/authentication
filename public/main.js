@@ -1,4 +1,4 @@
-import { hideElement, showFlexElement } from "./common.js";
+import { hideElement, showFlexElement, showBlockElement } from "./common.js";
 import {
   isUserLogin,
   loginUser,
@@ -11,6 +11,7 @@ import { authType } from "./constant.js";
 const buttonContainer = document.querySelector(".buttonContainer");
 const activityContainer = document.querySelector(".activityContainer");
 const loginFormContainer = document.querySelector("#loginFormContainer");
+const userName = document.querySelector("#userName");
 const registrationFormContainer = document.querySelector(
   "#registrationFormContainer"
 );
@@ -19,6 +20,7 @@ const myNotes = document.querySelector("#myNotes");
 
 const basicButton = document.querySelector("#basicButton");
 const loginButton = document.querySelector("#loginButton");
+const logoutBtn = document.querySelector("#logoutBtn");
 const loginSubmitButton = document.querySelector("#loginSubmitButton");
 const saveNotesButton = document.querySelector("#saveNotesButton");
 
@@ -39,6 +41,7 @@ let currentFlow = "";
 basicButton.addEventListener("click", () => StartFlow(authType.BASIC_AUTH));
 
 loginButton.addEventListener("click", onLoginBtnClick);
+logoutBtn.addEventListener("click", onLogoutBtnClick);
 loginSubmitButton.addEventListener("click", onLoginSubmitBtnClick);
 
 registrationButton.addEventListener("click", onRegistrationButtonClick);
@@ -57,7 +60,18 @@ function onRegistrationButtonClick() {
 function StartFlow(flow) {
   currentFlow = flow;
   hideElement(buttonContainer);
-  showFlexElement(activityContainer);
+  getData(currentFlow)
+    .then((data) => {
+      showFlexElement(textAreaContainer);
+      myNotes.value = data.data;
+      userName.textContent = data.name;
+      showBlockElement(userName);
+      showBlockElement(logoutBtn);
+    })
+    .catch((err) => {
+      console.log(err);
+      showFlexElement(activityContainer);
+    });
 }
 
 async function onLoginBtnClick() {
@@ -78,13 +92,15 @@ async function onLoginSubmitBtnClick() {
     alert("EMAIL or PASSWORD too short");
     return;
   }
-  debugger;
   loginUser(currentFlow, email, password)
     .then((data) => {
       hideElement(loginFormContainer);
       alert("Login Success");
       showFlexElement(textAreaContainer);
-      myNotes.value = data;
+      myNotes.value = data.data;
+      showBlockElement(logoutBtn);
+      userName.textContent = data.name;
+      showBlockElement(userName);
     })
     .catch((err) => {
       alert(err);
@@ -107,6 +123,9 @@ async function onRegistrationSubmitButtonClick() {
       hideElement(registrationFormContainer);
       alert("Login Success");
       showFlexElement(textAreaContainer);
+      showBlockElement(logoutBtn);
+      userName.textContent = data.name;
+      showBlockElement(userName);
     })
     .catch((err) => {
       alert(err);
@@ -122,6 +141,11 @@ async function onSaveNotesButtonClick() {
     .catch((err) => {
       alert(err);
     });
+}
+
+function onLogoutBtnClick() {
+  localStorage.clear();
+  window.location.reload();
 }
 
 function showTextEditor() {}

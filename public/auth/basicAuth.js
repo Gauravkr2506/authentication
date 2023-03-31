@@ -28,6 +28,7 @@ export async function registerUserBasicAuth(name, email, password) {
       const { name, email, token, data } = resData;
       setBasicAuthToken(token);
       setUserDetail({ name, email, data });
+      return resData;
     })
     .catch((error) => {
       console.log(error);
@@ -48,7 +49,7 @@ export async function loginUserBasicAuth(email, password) {
       const { name, email, token, data } = resData;
       setBasicAuthToken(token);
       setUserDetail({ name, email, data });
-      return data;
+      return resData;
     })
     .catch((error) => {
       console.log(error);

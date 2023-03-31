@@ -69,3 +69,25 @@ button.formBtn{
     transform: translateX(-50%);
     margin: 10px;
 }
+
+button.logout{
+    height: 24px;
+    font-size: 15px;
+    background-color: red;
+    color: blanchedalmond;
+    min-width: 90px;
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    display: none;
+}
+
+.userName{
+    color: rgb(19, 190, 27);
+    font-size: 30px;
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    margin: 0px;
+    display: none;
+}
