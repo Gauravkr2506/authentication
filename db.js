@@ -41,13 +41,17 @@ module.exports = {
 };
 
 async function testDB(req, res) {
-  pool.query("SELECT NOW()", (err, res) => {
-    if (err) {
-      res.status(200).send({ message: "db test", err: err });
-    } else {
-      res.status(200).send({ message: "db test", process: process.env });
-    }
-  });
+  try {
+    pool.query("SELECT NOW()", (err) => {
+      if (err) {
+        res.status(200).send({ message: "db test", err: err });
+      } else {
+        res.status(200).send({ message: "db test", process: process.env });
+      }
+    });
+  } catch (error) {
+    res.status(200).send({ message: "db test", error: error });
+  }
 }
 
 module.exports.getUserDetails = getUserDetails;
