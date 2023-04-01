@@ -53,3 +53,4 @@ async function testDB(req, res) {
 module.exports.getUserDetails = getUserDetails;
 module.exports.addNewUser = addNewUser;
 module.exports.updateUserData = updateUserData;
+module.exports.testDB = testDB;
