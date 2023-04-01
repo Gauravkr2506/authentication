@@ -1,13 +1,14 @@
 const { Pool } = require("pg");
 
-let pool = new Pool({
-  user: process.env.db_username,
-  host: process.env.endpoint,
-  database: process.env.database_name,
-  password: process.env.password,
-  port: +process.env.db_port,
-});
-
+async function startConnection() {
+  return new Pool({
+    user: process.env.db_username,
+    host: process.env.endpoint,
+    database: process.env.database_name,
+    password: process.env.password,
+    port: +process.env.db_port,
+  });
+}
 async function getUserDetails(email) {
   let query = `SELECT * FROM public."userAuth" WHERE email = '${email}'`;
   console.log("query => getUserDetails => ", query);
@@ -35,22 +36,23 @@ async function updateUserData(data, email) {
 }
 
 async function testDB(req, res) {
+  startConnection()
+    .then((pool) => {
+      pool.query("SELECT NOW();", (err) => {
+        if (err) {
+          console.lof("pool Error Gaurav===>0", err);
+          pool.end();
+          res.status(200).send({ message: "db test", err: err });
+        } else {
+          pool.end();
+          res.status(200).send({ message: "db test", process: process.env });
+        }
+      });
+    })
+    .catch((err) => {
+      console.lof("pool Error Gaurav===>", err);
+    });
   try {
-    pool = new Pool({
-      user: process.env.db_username,
-      host: process.env.endpoint,
-      database: process.env.database_name,
-      password: process.env.password,
-      port: +process.env.db_port,
-    });
-
-    pool.query("SELECT NOW()", (err) => {
-      if (err) {
-        res.status(200).send({ message: "db test", err: err });
-      } else {
-        res.status(200).send({ message: "db test", process: process.env });
-      }
-    });
   } catch (error) {
     res.status(200).send({ message: "db test", error: error });
   }
