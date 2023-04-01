@@ -46,7 +46,9 @@ const registerUserBasicAuth = (req, res) => {
 
     const token = jwt.sign({ email: email }, JWT_SECRET, { expiresIn: "1h" });
 
-    return res.status(201).send({ name, email, token, data: "" });
+    return res
+      .status(201)
+      .send({ name, email, token, data: "", myKey: process?.env?.myKey });
   });
 };
 
