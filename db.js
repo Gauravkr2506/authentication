@@ -40,7 +40,7 @@ async function testDB(req, res) {
     .then((pool) => {
       pool.query("SELECT NOW();", (err) => {
         if (err) {
-          console.lof("pool Error Gaurav===>0", err);
+          console.log("pool Error Gaurav===>0", err);
           pool.end();
           res.status(200).send({ message: "db test", err: err });
         } else {
@@ -50,7 +50,7 @@ async function testDB(req, res) {
       });
     })
     .catch((err) => {
-      console.lof("pool Error Gaurav===>", err);
+      console.log("pool Error Gaurav===>", err);
     });
   try {
   } catch (error) {
