@@ -13,7 +13,7 @@ const {
   setDataBasicAuth,
 } = require("./basicAuth/basicAuth.js");
 
-const { query } = require("./db.js");
+const { testDB } = require("./db.js");
 
 const app = express();
 app.use(express.static("public"));
@@ -27,11 +27,7 @@ app.post("/loginBasicAuth", loginBasicAuth);
 app.get("/getDataBasicAuth", isAuthenticatedBasicAuth, getDataBasicAuth);
 app.post("/setDataBasicAuth", isAuthenticatedBasicAuth, setDataBasicAuth);
 
-app.get("/testDB", async (req, res) => {
-  res
-    .status(200)
-    .send({ message: "set data successfully", process: process.env });
-});
+app.get("/testDB", testDB);
 
 const PORT = process.env.PORT || 8081;
 app.listen(PORT, () => {

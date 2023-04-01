@@ -40,6 +40,16 @@ module.exports = {
   },
 };
 
+async function testDB(req, res) {
+  pool.query("SELECT NOW()", (err, res) => {
+    if (err) {
+      res.status(200).send({ message: "db test", err: err });
+    } else {
+      res.status(200).send({ message: "db test", process: process.env });
+    }
+  });
+}
+
 module.exports.getUserDetails = getUserDetails;
 module.exports.addNewUser = addNewUser;
 module.exports.updateUserData = updateUserData;
