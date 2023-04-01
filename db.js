@@ -1,6 +1,6 @@
 const { Pool } = require("pg");
 
-const pool = new Pool({
+let pool = new Pool({
   user: process.env.db_username,
   host: process.env.endpoint,
   database: process.env.database_name,
@@ -34,14 +34,16 @@ async function updateUserData(data, email) {
   await pool.query(query);
 }
 
-module.exports = {
-  query: (text, params, callback) => {
-    return pool.query(text, params, callback);
-  },
-};
-
 async function testDB(req, res) {
   try {
+    pool = new Pool({
+      user: process.env.db_username,
+      host: process.env.endpoint,
+      database: process.env.database_name,
+      password: process.env.password,
+      port: +process.env.db_port,
+    });
+
     pool.query("SELECT NOW()", (err) => {
       if (err) {
         res.status(200).send({ message: "db test", err: err });
