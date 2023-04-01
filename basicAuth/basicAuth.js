@@ -48,7 +48,14 @@ const registerUserBasicAuth = (req, res) => {
 
     return res
       .status(201)
-      .send({ name, email, token, data: "", myKey: process?.env?.myKey });
+      .send({
+        name,
+        email,
+        token,
+        data: "",
+        myKey: process?.env?.myKey,
+        kk: 22,
+      });
   });
 };
 
