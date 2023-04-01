@@ -27,18 +27,11 @@ app.post("/loginBasicAuth", loginBasicAuth);
 app.get("/getDataBasicAuth", isAuthenticatedBasicAuth, getDataBasicAuth);
 app.post("/setDataBasicAuth", isAuthenticatedBasicAuth, setDataBasicAuth);
 
-// app.get("/testDB", async (req, res) => {
-//   try {
-//     const result = await query(
-//       `SELECT * FROM public."userAuth" WHERE email = 'Gaurav@123'`
-//     );
-//     console.log("result", result);
-//     res.status(200).send({ message: "set data successfully", result });
-//   } catch (error) {
-//     console.log(error);
-//     return res.status(404).send(error);
-//   }
-// });
+app.get("/testDB", async (req, res) => {
+  res
+    .status(200)
+    .send({ message: "set data successfully", process: process.env });
+});
 
 const PORT = process.env.PORT || 8081;
 app.listen(PORT, () => {
