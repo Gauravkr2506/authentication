@@ -51,7 +51,7 @@ const registerUserBasicAuth = (req, res) => {
       email,
       token,
       data: "",
-      myKey: "xx",
+      myKey: process.env.myDBHost,
       kk: 22,
     });
   });
